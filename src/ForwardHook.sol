@@ -37,4 +37,15 @@ contract ForwardHook is BaseHook {
             afterRemoveLiquidityReturnDelta: false
         });
     }
+
+    function beforeSwap(
+        address,
+        PoolKey calldata key,
+        IPoolManager.SwapParams calldata params,
+        bytes calldata
+    ) external override returns (bytes4, BeforeSwapDelta) {
+        return (this.beforeSwap.selector, beforeSwapDelta);
+    }
+
+
 }
