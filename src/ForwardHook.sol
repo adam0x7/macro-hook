@@ -11,4 +11,30 @@ import {BaseHook} from "v4-periphery/contracts/BaseHook.sol";
 contract ForwardHook is BaseHook {
 
     constructor(IPoolManager _manager) BaseHook(_manager){}
+
+
+    function getHookPermissions()
+    public
+    pure
+    override
+    returns (Hooks.Permissions memory)
+    {
+        return
+            Hooks.Permissions({
+            beforeInitialize: false,
+            afterInitialize: false,
+            beforeAddLiquidity: false,
+            afterAddLiquidity: true,
+            beforeRemoveLiquidity: false,
+            afterRemoveLiquidity: false,
+            beforeSwap: true,
+            afterSwap: false,
+            beforeDonate: false,
+            afterDonate: false,
+            beforeSwapReturnDelta: false,
+            afterSwapReturnDelta: false,
+            afterAddLiquidityReturnDelta: false,
+            afterRemoveLiquidityReturnDelta: false
+        });
+    }
 }
